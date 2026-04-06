@@ -144,7 +144,7 @@
     }
 
     .big-letter {
-      font-size: clamp(4rem, 10vw, 7rem);
+      font-size: clamp(5rem, 18vw, 10rem);
       font-weight: bold;
       color: var(--primary-dark);
       margin-bottom: 8px;
@@ -198,19 +198,19 @@
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       display: flex;
-      align-items: center;
+	  align-items: center;
       justify-content: center;
       text-align: center;
       padding: 12px;
       border: 1px solid var(--border);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
-    }
+	}
 
     .flip-front {
       background: #0f172a;
       color: #eed93f;
       font-weight: bold;
-      font-size: 2rem;
+      font-size: 3.5rem;
     }
 
     .flip-back {
@@ -218,19 +218,20 @@
       color: #000000;
       transform: rotateY(180deg);
       font-weight: normal;
-      font-size: 1.15rem;
-      line-height: 1.4;
+      font-size: 1.9rem;
+      line-height: 1.9;
+	  font-size: clamp(1.3rem, 5vw, 2rem);
     }
 
     .word-front {
-      font-size: 2.5rem;
+      font-size: 3rem;
 	  letter-spacing: 1px;
       text-transform: uppercase;
     }
 
     .word-back {
       font-size: 1.5rem;
-      line-height: 1.9;
+      line-height: 1.5;
 	  letter-spacing: 1px;
       writing-mode: horizontal-tb;
       text-orientation: mixed;
@@ -240,8 +241,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+	  text-align: center;
       padding: 16px;
+	  font-size: clamp(1.1rem, 4.8vw, 1.6rem);
     }
 
     .result-area {
@@ -267,14 +269,7 @@
       text-align: center;
     }
 
-    .footer-note {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.92rem;
-      padding-bottom: 22px;
-    }
-
-    @media (max-width: 640px) {
+        @media (max-width: 640px) {
       .panel {
         padding: 18px;
       }
@@ -343,8 +338,6 @@
     </section>
   </main>
 
-  <div class="footer-note">Designed to practice letter recognition, adapted sounds, and spelling by level.</div>
-
   <script>
     const alphabet = [
       { display: 'Aa', char: 'A', sound: '/ei/' },
@@ -369,7 +362,7 @@
       { display: 'Tt', char: 'T', sound: '/ti/' },
       { display: 'Uu', char: 'U', sound: '/iu/' },
       { display: 'Vv', char: 'V', sound: '/vi/' },
-      { display: 'Ww', char: 'W', sound: '/dábl iu/' },
+      { display: 'Ww', char: 'W', sound: '/dábliu/' },
       { display: 'Xx', char: 'X', sound: '/eks/' },
       { display: 'Yy', char: 'Y', sound: '/uai/' },
       { display: 'Zz', char: 'Z', sound: '/zi/' }
@@ -398,7 +391,7 @@
       T: 'ti',
       U: 'iu',
       V: 'vi',
-      W: 'dábl iu',
+      W: 'dábliu',
       X: 'eks',
       Y: 'uai',
       Z: 'zi'
@@ -509,6 +502,7 @@
       const chosen = words[randomIndex(words.length)];
       const card = createFlipCard(chosen.toUpperCase(), wordToSpelling(chosen), 'word-card');
       generatedWrap.appendChild(card);
+	  
     }
 
     randomLetterBtn.addEventListener('click', function () {
