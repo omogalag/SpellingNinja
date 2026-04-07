@@ -43,8 +43,8 @@
     }
 
     .logo {
-      width: 90px;
-      height: 90px;
+      width: 84px;
+      height: 84px;
       object-fit: contain;
     }
 
@@ -97,48 +97,6 @@
       font-size: clamp(0.95rem, 3.8vw, 1rem);
     }
 
-    .controls {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .word-controls {
-      grid-template-columns: 1fr;
-      align-items: stretch;
-    }
-
-    label {
-      color: var(--muted);
-      font-size: 0.96rem;
-      font-weight: 700;
-    }
-
-    button,
-    select {
-      width: 100%;
-      min-height: 48px;
-      border: 1px solid var(--border);
-      background: var(--primary);
-      color: #000;
-	  min-height: 56px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-weight: 700;
-    }
-
-    button {
-      cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    button:active {
-      transform: scale(0.98);
-	  touch-action: manipulation;
-    }
-
     .section-badge {
       display: inline-flex;
       align-items: center;
@@ -153,16 +111,63 @@
       font-weight: 700;
     }
 
-    .alphabet-tools {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      background: linear-gradient(180deg, rgba(17,24,39,0.98) 0%, rgba(17,24,39,0.92) 100%);
-      backdrop-filter: blur(10px);
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .word-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    button,
+    select {
+      width: 100%;
+      min-height: 58px;
       border: 1px solid var(--border);
+      background: var(--primary);
+      color: #000;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: clamp(1rem, 4.2vw, 1.08rem);
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    button {
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .alphabet-tools {
+      position: static;
+      background: transparent;
+      border: 0;
       border-radius: 18px;
-      padding: 10px;
-      margin-bottom: 14px;
+      padding: 0;
+      margin-bottom: 18px;
+      width: 100%;
+      backdrop-filter: none;
     }
 
     .alphabet-grid {
@@ -214,7 +219,6 @@
     .flip-front {
       background: #0f172a;
       color: var(--primary);
-      font-weight: 800;
       font-size: clamp(2.2rem, 8vw, 3rem);
     }
 
@@ -236,8 +240,8 @@
     }
 
     .card-main {
-      font-size: clamp(3rem, 8vw, 2.8rem);
-      font-weight: 600;
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+      font-weight: 400;
       line-height: 1;
     }
 
@@ -252,8 +256,8 @@
     .word-front {
       font-size: clamp(2rem, 9vw, 3rem);
       letter-spacing: 1px;
-	  font-weight: normal;
       text-transform: uppercase;
+      font-weight: 400;
     }
 
     .word-back {
@@ -318,29 +322,26 @@
 
       .controls {
         display: flex;
-		flex-direction: column;
-		gap: 12px;
+        flex-direction: row;
         flex-wrap: wrap;
-        align-items: center;
+        gap: 12px;
+        align-items: stretch;
       }
 
       .controls > * {
-        width: auto;
+        flex: 1 1 220px;
+        width: 100%;
       }
 
       .word-controls {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .word-controls label {
-        display: flex;
-        align-items: center;
+        gap: 12px;
       }
 
       .word-controls select {
-        min-width: 150px;
+        min-width: 220px;
       }
 
       .alphabet-grid {
@@ -355,15 +356,6 @@
       .word-card {
         height: 170px;
       }
-
-      .alphabet-tools {
-        position: static;
-        padding: 0;
-        margin-bottom: 18px;
-        background: transparent;
-        border: 0;
-        backdrop-filter: none;
-      }
     }
   </style>
 </head>
@@ -373,15 +365,13 @@
       <img src="https://raw.githubusercontent.com/omogalag/SpellingNinja/refs/heads/main/Spelling_Ninja_Small.png" alt="Ninja Bee" class="logo">
       <h1>Spelling Ninja</h1>
     </div>
-    <p>App to learn and practice spelling in English.</p>
+    <p>Tap the Cards to Learn and Practice Spelling in English.</p>
   </header>
 
   <main class="container">
     <section class="panel">
       <div class="section-badge">Alphabet Flip Cards</div>
-      <p>Tap each card to see the adapted pronunciation.</p>
-
-      <div class="alphabet-tools">
+       <div class="alphabet-tools">
         <div class="controls">
           <button id="flipAllLettersBtn" type="button">Flip all</button>
           <button id="resetLettersBtn" type="button">Reset</button>
@@ -393,10 +383,9 @@
 
     <section class="panel">
       <div class="section-badge">Word Practice by Level</div>
-      <p>Tap each card to see the adapted pronunciation.</p>
-      <div class="controls word-controls">
-          <select id="levelSelect">
-          <option value="all">Choose your level</option>
+            <div class="controls word-controls">
+        <select id="levelSelect">
+          <option value="all">Choose a level:</option>
           <option value="a1">A1</option>
           <option value="a2">A2</option>
           <option value="b1">B1</option>
@@ -405,7 +394,8 @@
       </div>
       <div class="result-area">
         <div class="generated-wrap" id="generatedWrap"></div>
-        </div>
+        <div class="legend">Every letter you spell builds your voice in English.</div>
+      </div>
     </section>
   </main>
 
@@ -500,7 +490,7 @@
       return '/' + parts.join(' - ') + '/';
     }
 
-    function createFlipCard(frontText, backText, extraClass = '', subtitle = 'Tap') {
+    function createFlipCard(frontText, backText, extraClass = '') {
       const card = document.createElement('div');
       card.className = `flip-card ${extraClass}`.trim();
       card.setAttribute('role', 'button');
@@ -518,8 +508,8 @@
       } else {
         front.innerHTML = `
           <div class="card-stack">
-  <div class="card-main">${frontText}</div>
-</div>
+            <div class="card-main">${frontText}</div>
+          </div>
         `;
       }
 
@@ -528,16 +518,16 @@
 
       if (extraClass === 'word-card') {
         back.innerHTML = `
-		<div style="display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center;">
-		<div style="font-size:1.4rem; font-weight:600;">${frontText}</div>
-		<div style="font-size:1.6rem;">${backText}</div>
-		</div>
-		`;
+          <div style="display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center;">
+            <div style="font-size:1.4rem; font-weight:600;">${frontText}</div>
+            <div style="font-size:1.6rem;">${backText}</div>
+          </div>
+        `;
       } else {
         back.innerHTML = `
           <div class="card-stack">
-            <div class="card-main" style=style="font-size:clamp(1.1rem, 5vw, 1.5rem);">${backText}</div>
-            </div>
+            <div class="card-main" style="font-size:clamp(1.3rem, 6vw, 1.8rem); font-weight:500;">${backText}</div>
+          </div>
         `;
       }
 
