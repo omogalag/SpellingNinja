@@ -1,52 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/omogalag/OTTO/main/favicon.ico">
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/omogalag/OTTO/main/favicon.ico">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Spelling Ninja</title>
   <style>
-  .title-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-}
-
-.logo {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 16px;
-  margin-top: 20px;
-  border-top: 1px solid var(--border);
-  color: #f5f3b9;
-  font-size: 0.9rem;
-}
-
     :root {
       --bg: #0b1120;
       --card: #111827;
       --primary: #eed93f;
-      --primary-dark: #eed93f;
       --text: #e5eefc;
       --muted: #f5f3b9;
       --border: #23314d;
       --accent: #172036;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      --radius: 18px;
+      --radius: 20px;
     }
 
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -56,30 +34,45 @@
       color: var(--text);
     }
 
+    .title-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+
     header {
-      padding: 28px 20px 16px;
+      padding: 18px 16px 10px;
       text-align: center;
     }
 
     header h1 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      color: #eed93f;
+      margin: 0;
+      font-size: clamp(1.9rem, 7vw, 2.8rem);
+      color: var(--primary);
+      line-height: 1.1;
     }
 
     header p {
-      margin: 0 auto;
-      max-width: 900px;
+      margin: 8px auto 0;
+      max-width: 760px;
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.6;
+      font-size: clamp(0.95rem, 3.8vw, 1rem);
+      line-height: 1.5;
     }
 
     .container {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto 40px;
+      width: min(1040px, calc(100% - 20px));
+      margin: 0 auto 28px;
       display: grid;
-      gap: 22px;
+      gap: 16px;
     }
 
     .panel {
@@ -87,96 +80,106 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 22px;
+      padding: 18px;
     }
 
     .panel h2 {
       margin: 0 0 8px;
-      color: #eed93f;
-      font-size: 1.35rem;
+      color: var(--primary);
+      font-size: clamp(1.2rem, 5vw, 1.5rem);
+      line-height: 1.2;
     }
 
     .panel p {
-      margin: 0 0 16px;
-      color: #f5f3b9;
+      margin: 0 0 14px;
+      color: var(--muted);
       line-height: 1.5;
+      font-size: clamp(0.95rem, 3.8vw, 1rem);
     }
 
     .controls {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    button, select {
-      border: 1px solid var(--border);
-      background: #eed93f;
-      color: black;
-      padding: 10px 14px;
-      border-radius: 12px;
+    .word-controls {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+
+    label {
+      color: var(--muted);
       font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    button,
+    select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      background: var(--primary);
+      color: #000;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 700;
     }
 
     button {
       cursor: pointer;
-      transition: 0.2s ease;
-      font-weight: bold;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    button.primary {
-      background: #eed93f;
-      color: black;
-      border-color: #eed93f;
+    button:active {
+      transform: scale(0.98);
     }
 
-    button:hover {
-      transform: translateY(-1px);
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(238, 217, 63, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(238, 217, 63, 0.22);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+      font-weight: 700;
     }
 
-    .big-letter-box {
-      background: var(--accent);
-      border: 1px solid #23314d;
-      border-radius: 24px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .big-letter {
-      font-size: clamp(5rem, 18vw, 10rem);
-      font-weight: bold;
-      color: var(--primary-dark);
-      margin-bottom: 8px;
-    }
-
-    .phonetic {
-      font-size: clamp(1.3rem, 3vw, 2rem);
-      color: #f8fbff;
-      font-weight: bold;
-    }
-
-    .mini-help {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.95rem;
+    .alphabet-tools {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: linear-gradient(180deg, rgba(17,24,39,0.98) 0%, rgba(17,24,39,0.92) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 10px;
+      margin-bottom: 14px;
     }
 
     .alphabet-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
 
     .flip-card {
       perspective: 1000px;
-      height: 140px;
+      height: 112px;
       cursor: pointer;
     }
 
     .word-card {
-      width: min(100%, 420px);
-      height: 170px;
+      width: 100%;
+      max-width: 420px;
+      height: 180px;
+      margin: 0 auto;
     }
 
     .flip-card-inner {
@@ -198,143 +201,207 @@
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       display: flex;
-	  align-items: center;
+      align-items: center;
       justify-content: center;
       text-align: center;
       padding: 12px;
       border: 1px solid var(--border);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
-	}
+    }
 
     .flip-front {
       background: #0f172a;
-      color: #eed93f;
-      font-weight: bold;
-      font-size: 3.5rem;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: clamp(2.2rem, 8vw, 3rem);
     }
 
     .flip-back {
-      background: #eed93f;
-      color: #000000;
+      background: var(--primary);
+      color: #000;
       transform: rotateY(180deg);
-      font-weight: normal;
-      font-size: 1.9rem;
-      line-height: 1.9;
-	  font-size: clamp(1.3rem, 5vw, 2rem);
+      line-height: 1.4;
+      font-size: clamp(1rem, 4.8vw, 1.3rem);
+      padding: 14px;
+    }
+
+    .card-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-main {
+      font-size: clamp(3rem, 8vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .card-sub {
+      font-size: clamp(0.78rem, 3vw, 0.92rem);
+      opacity: 0.82;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
     }
 
     .word-front {
-      font-size: 3rem;
-	  letter-spacing: 1px;
+      font-size: clamp(2rem, 9vw, 3rem);
+      letter-spacing: 1px;
+	  font-weight: normal;
       text-transform: uppercase;
     }
 
     .word-back {
-      font-size: 1.5rem;
-      line-height: 1.5;
-	  letter-spacing: 1px;
-      writing-mode: horizontal-tb;
-      text-orientation: mixed;
+      letter-spacing: 1px;
       white-space: normal;
       word-break: break-word;
       overflow-wrap: anywhere;
       display: flex;
       align-items: center;
       justify-content: center;
-	  text-align: center;
+      text-align: center;
       padding: 16px;
-	  font-size: clamp(1.1rem, 4.8vw, 1.6rem);
+      font-size: clamp(1rem, 4.8vw, 1.35rem);
     }
 
     .result-area {
       display: grid;
-      gap: 18px;
-      margin-top: 12px;
+      gap: 14px;
+      margin-top: 8px;
     }
 
     .generated-wrap {
       display: grid;
       place-items: center;
-      min-height: 210px;
+      min-height: 200px;
       background: linear-gradient(180deg, #0d1528 0%, #131d33 100%);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 20px;
+      padding: 18px;
     }
 
     .legend {
-      margin-top: 6px;
       color: var(--muted);
       font-size: 0.92rem;
       text-align: center;
+      line-height: 1.4;
     }
 
-        @media (max-width: 640px) {
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px;
+      margin-top: 8px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (min-width: 641px) {
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        gap: 22px;
+        margin-bottom: 40px;
+      }
+
       .panel {
-        padding: 18px;
+        padding: 22px;
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .controls > * {
+        width: auto;
+      }
+
+      .word-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .word-controls label {
+        display: flex;
+        align-items: center;
+      }
+
+      .word-controls select {
+        min-width: 150px;
+      }
+
+      .alphabet-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 14px;
       }
 
       .flip-card {
-        height: 120px;
+        height: 132px;
       }
 
       .word-card {
-        height: 150px;
+        height: 170px;
+      }
+
+      .alphabet-tools {
+        position: static;
+        padding: 0;
+        margin-bottom: 18px;
+        background: transparent;
+        border: 0;
+        backdrop-filter: none;
       }
     }
   </style>
 </head>
 <body>
-<header>
-  <div class="title-wrap">
-    <img src="https://raw.githubusercontent.com/omogalag/SpellingNinja/refs/heads/main/Spelling_Ninja_Small.png" alt="Ninja Bee" class="logo">
-    <h1>Spelling Ninja</h1>
-  </div>
-  <p>App to learn and practice spelling in English.</p>
-</header>
+  <header>
+    <div class="title-wrap">
+      <img src="https://raw.githubusercontent.com/omogalag/SpellingNinja/refs/heads/main/Spelling_Ninja_Small.png" alt="Ninja Bee" class="logo">
+      <h1>Spelling Ninja</h1>
+    </div>
+    <p>App to learn and practice spelling in English.</p>
+  </header>
 
   <main class="container">
     <section class="panel">
-      <h2>1. Learn the alphabet sounds</h2>
-      <p>Press the button to see a large letter and its adapted transcription below.</p>
-      <div class="controls">
-        <button class="primary" id="randomLetterBtn" type="button">Random letter</button>
-        <button id="nextLetterBtn" type="button">Next letter</button>
-      </div>
-      <div class="big-letter-box">
-        <div class="big-letter" id="bigLetter">Aa</div>
-        <div class="phonetic" id="bigPhonetic">/ei/</div>
-        <div class="mini-help">Look at the letter and repeat the adapted transcription.</div>
-      </div>
-    </section>
+      <div class="section-badge">Alphabet Flip Cards</div>
+      <p>Tap each card to see the adapted pronunciation.</p>
 
-    <section class="panel">
-      <h2>2. Alphabet flip cards</h2>
-      <p>Click each card to see the adapted pronunciation on the back.</p>
-      <div class="controls">
-        <button id="flipAllLettersBtn" type="button">Flip all</button>
-        <button id="resetLettersBtn" type="button">Reset</button>
+      <div class="alphabet-tools">
+        <div class="controls">
+          <button id="flipAllLettersBtn" type="button">Flip all</button>
+          <button id="resetLettersBtn" type="button">Reset</button>
+        </div>
       </div>
+
       <div class="alphabet-grid" id="alphabetGrid"></div>
     </section>
 
     <section class="panel">
-      <h2>3. Word generator by level</h2>
-      <p>Choose a level and generate a word. When you flip the card, you will see the spelling transcription based on its letters.</p>
-      <div class="controls">
-        <label for="levelSelect"><strong>Level:</strong></label>
-        <select id="levelSelect">
-          <option value="all">All</option>
+      <div class="section-badge">Word Practice by Level</div>
+      <p>Tap each card to see the adapted pronunciation.</p>
+      <div class="controls word-controls">
+          <select id="levelSelect">
+          <option value="all">Choose your level</option>
           <option value="a1">A1</option>
           <option value="a2">A2</option>
           <option value="b1">B1</option>
         </select>
-        <button class="primary" id="generateWordBtn" type="button">Generate word</button>
+        <button id="generateWordBtn" type="button">Generate word</button>
       </div>
       <div class="result-area">
         <div class="generated-wrap" id="generatedWrap"></div>
-        <div class="legend">Click the card to flip between the word and the spelling.</div>
-      </div>
+        </div>
     </section>
   </main>
 
@@ -409,25 +476,12 @@
       ]
     };
 
-    let currentLetterIndex = 0;
-
-    const bigLetter = document.getElementById('bigLetter');
-    const bigPhonetic = document.getElementById('bigPhonetic');
     const alphabetGrid = document.getElementById('alphabetGrid');
     const generatedWrap = document.getElementById('generatedWrap');
     const levelSelect = document.getElementById('levelSelect');
-    const randomLetterBtn = document.getElementById('randomLetterBtn');
-    const nextLetterBtn = document.getElementById('nextLetterBtn');
     const flipAllLettersBtn = document.getElementById('flipAllLettersBtn');
     const resetLettersBtn = document.getElementById('resetLettersBtn');
     const generateWordBtn = document.getElementById('generateWordBtn');
-
-    function updateBigLetter(index) {
-      const item = alphabet[index];
-      bigLetter.textContent = item.display;
-      bigPhonetic.textContent = item.sound;
-      currentLetterIndex = index;
-    }
 
     function randomIndex(max) {
       return Math.floor(Math.random() * max);
@@ -442,32 +496,61 @@
       return '/' + parts.join(' - ') + '/';
     }
 
-    function createFlipCard(frontText, backText, extraClass = '') {
+    function createFlipCard(frontText, backText, extraClass = '', subtitle = 'Tap') {
       const card = document.createElement('div');
       card.className = `flip-card ${extraClass}`.trim();
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', `Flip card for ${frontText}`);
 
       const inner = document.createElement('div');
       inner.className = 'flip-card-inner';
 
       const front = document.createElement('div');
       front.className = `flip-face flip-front ${extraClass === 'word-card' ? 'word-front' : ''}`.trim();
-      front.textContent = frontText;
+
+      if (extraClass === 'word-card') {
+        front.textContent = frontText;
+      } else {
+        front.innerHTML = `
+          <div class="card-stack">
+  <div class="card-main">${frontText}</div>
+</div>
+        `;
+      }
 
       const back = document.createElement('div');
       back.className = `flip-face flip-back ${extraClass === 'word-card' ? 'word-back' : ''}`.trim();
-    back.innerHTML = `
-  <div style="display:flex; flex-direction:column; gap:6px;">
-    <div style="font-size:1.3rem;">${frontText}</div>
-    <div>${backText}</div>
-  </div>
-`;
+
+      if (extraClass === 'word-card') {
+        back.innerHTML = `
+		<div style="display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center;">
+		<div style="font-size:1.4rem; font-weight:600;">${frontText}</div>
+		<div style="font-size:1.6rem;">${backText}</div>
+		</div>
+		`;
+      } else {
+        back.innerHTML = `
+          <div class="card-stack">
+            <div class="card-main" style=style="font-size:clamp(1.1rem, 5vw, 1.5rem);">${backText}</div>
+            </div>
+        `;
+      }
 
       inner.appendChild(front);
       inner.appendChild(back);
       card.appendChild(inner);
 
-      card.addEventListener('click', function () {
+      function toggleCard() {
         card.classList.toggle('flipped');
+      }
+
+      card.addEventListener('click', toggleCard);
+      card.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleCard();
+        }
       });
 
       return card;
@@ -502,16 +585,7 @@
       const chosen = words[randomIndex(words.length)];
       const card = createFlipCard(chosen.toUpperCase(), wordToSpelling(chosen), 'word-card');
       generatedWrap.appendChild(card);
-	  
     }
-
-    randomLetterBtn.addEventListener('click', function () {
-      updateBigLetter(randomIndex(alphabet.length));
-    });
-
-    nextLetterBtn.addEventListener('click', function () {
-      updateBigLetter((currentLetterIndex + 1) % alphabet.length);
-    });
 
     flipAllLettersBtn.addEventListener('click', function () {
       const cards = alphabetGrid.querySelectorAll('.flip-card');
@@ -527,13 +601,12 @@
       renderGeneratedWord();
     });
 
-    updateBigLetter(0);
     renderAlphabetCards();
     renderGeneratedWord();
   </script>
-  
+
   <footer class="footer">
     <p>🥷 Omar Mogollón - 2026</p>
-</footer>
+  </footer>
 </body>
 </html>
