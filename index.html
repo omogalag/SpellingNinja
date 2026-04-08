@@ -43,8 +43,8 @@
     }
 
     .logo {
-      width: 90px;
-      height: 90px;
+      width: 84px;
+      height: 84px;
       object-fit: contain;
     }
 
@@ -257,7 +257,7 @@
       font-size: clamp(2rem, 9vw, 3rem);
       letter-spacing: 1px;
       text-transform: uppercase;
-      font-weight: 700;
+      font-weight: 400;
     }
 
     .word-back {
@@ -357,6 +357,43 @@
         height: 170px;
       }
     }
+.tabs {
+  display: flex;
+  gap: 10px;
+  padding: 10px 10px 0;
+
+}
+
+.tab {
+  background: #1a2440;
+  color: #eed93f;
+  border: 1px solid var(--border);
+}
+
+.tab.active {
+  background: var(--primary);
+  color: #000;
+}
+
+/* Móvil */
+@media (max-width: 640px) {
+  .tab {
+    flex: 1;
+  }
+}
+
+/* Computador */
+@media (min-width: 641px) {
+  .tabs {
+    justify-content: center;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .tab {
+    flex: 0 0 550px;
+  }
+}
   </style>
 </head>
 <body>
@@ -368,10 +405,15 @@
     <p>Tap the cards to practice spelling.</p>
   </header>
 
+  <div class="tabs">
+    <button id="showAlphabet" class="tab active">Learn</button>
+    <button id="showWords" class="tab">Practice</button>
+  </div>
+
   <main class="container">
-    <section class="panel">
+    <section class="panel" id="alphabetSection">
       <div class="section-badge">Alphabet Flip Cards</div>
-       <div class="alphabet-tools">
+      <div class="alphabet-tools">
         <div class="controls">
           <button id="flipAllLettersBtn" type="button">Flip all</button>
           <button id="resetLettersBtn" type="button">Reset</button>
@@ -381,11 +423,11 @@
       <div class="alphabet-grid" id="alphabetGrid"></div>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="wordSection">
       <div class="section-badge">Word Practice by Level</div>
-            <div class="controls word-controls">
+      <div class="controls word-controls">
         <select id="levelSelect">
-          <option value="all">All Levels</option>
+          <option value="all">All</option>
           <option value="a1">A1</option>
           <option value="a2">A2</option>
           <option value="b1">B1</option>
@@ -394,7 +436,7 @@
       </div>
       <div class="result-area">
         <div class="generated-wrap" id="generatedWrap"></div>
-        <div class="legend">Every letter you spell builds your voice in English.</div>
+        <div class="legend">Say it, spell it, say it again.🔄</div>
       </div>
     </section>
   </main>
@@ -595,12 +637,32 @@
       renderGeneratedWord();
     });
 
+    const alphabetSection = document.getElementById('alphabetSection');
+    const wordSection = document.getElementById('wordSection');
+    const showAlphabet = document.getElementById('showAlphabet');
+    const showWords = document.getElementById('showWords');
+
+    showAlphabet.addEventListener('click', () => {
+      alphabetSection.style.display = 'block';
+      wordSection.style.display = 'none';
+      showAlphabet.classList.add('active');
+      showWords.classList.remove('active');
+    });
+
+    showWords.addEventListener('click', () => {
+      alphabetSection.style.display = 'none';
+      wordSection.style.display = 'block';
+      showWords.classList.add('active');
+      showAlphabet.classList.remove('active');
+    });
+
     renderAlphabetCards();
     renderGeneratedWord();
+    wordSection.style.display = 'none';
   </script>
 
   <footer class="footer">
-    <p>🥷 Omar Mogollón - 2026</p>
+  <p>Every letter you spell builds your voice in English.💛<br><br>By Ninja Master Omar Mogollón 🥷</p>
   </footer>
 </body>
 </html>
